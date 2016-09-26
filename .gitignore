@@ -3,6 +3,10 @@ __pycache__
 
 # C extensions
 *.so
+*.dSYM
+*.a
+*.t
+*.o
 
 # Packages
 *.egg
@@ -39,10 +43,41 @@ nosetests.xml
 .idea
 *.swp
 
-# octant specific
+# pygridgen specific
 doc/_build
 doc/generated
 doc/_static/*.png
-octant/version.py
+pygridgen/version.py
+
+# pygridgen/external files make during library compilation
+external/csa/config.h
+external/csa/config.log
+external/csa/config.status
+external/csa/csabathy
+external/csa/makefile
+external/gridgen/config.h
+external/gridgen/config.log
+external/gridgen/config.status
+external/gridgen/gridgen
+external/gridgen/makefile
+external/gridutils/config.log
+external/gridutils/config.status
+external/gridutils/getbound
+external/gridutils/getnodes
+external/gridutils/gridbathy
+external/gridutils/gridutilsconfig.h
+external/gridutils/insertgrid
+external/gridutils/makefile
+external/gridutils/setbathy
+external/gridutils/subgrid
+external/gridutils/xy2ij
+external/nn/config.h
+external/nn/config.log
+external/nn/config.status
+external/nn/makefile
+external/nn/minell
+external/nn/nnbathy
+
+
 
 .ipynb_checkpoints

@@ -22,9 +22,9 @@ thin=True
 checksimplepoly=True
 verbose=True
 
-_libgridgen = np.ctypeslib.load_library('libgridgen', '/usr/local/lib')
+_libgridgen = np.ctypeslib.load_library('libgridgen.so', '/usr/local/lib')
 
-print _libgridgen
+print(_libgridgen)
 
 _libgridgen.gridgen_generategrid2.restype = ctypes.c_void_p
 _libgridgen.gridnodes_getx.restype = ctypes.POINTER(ctypes.POINTER(ctypes.c_double))
@@ -41,33 +41,33 @@ sigmas = ctypes.c_void_p(0)
 nrect = ctypes.c_int(0)
 xrect =  ctypes.c_void_p(0)
 yrect = ctypes.c_void_p(0)
-        
+
 ngrid = ctypes.c_int(0)
 xgrid = ctypes.POINTER(ctypes.c_double)()
 ygrid = ctypes.POINTER(ctypes.c_double)()
-        
+
 _gn = _libgridgen.gridgen_generategrid2(
-     ctypes.c_int(nbry), 
-     (ctypes.c_double * nbry)(*xbry), 
-     (ctypes.c_double * nbry)(*ybry), 
+     ctypes.c_int(nbry),
+     (ctypes.c_double * nbry)(*xbry),
+     (ctypes.c_double * nbry)(*ybry),
      (ctypes.c_double * nbry)(*beta),
-     ctypes.c_int(ul_idx), 
-     ctypes.c_int(nx), 
-     ctypes.c_int(ny), 
-     ngrid, 
-     xgrid, 
+     ctypes.c_int(ul_idx),
+     ctypes.c_int(nx),
+     ctypes.c_int(ny),
+     ngrid,
+     xgrid,
      ygrid,
-     ctypes.c_int(nnodes), 
-     ctypes.c_int(newton), 
+     ctypes.c_int(nnodes),
+     ctypes.c_int(newton),
      ctypes.c_double(precision),
-     ctypes.c_int(checksimplepoly), 
-     ctypes.c_int(thin), 
+     ctypes.c_int(checksimplepoly),
+     ctypes.c_int(thin),
      ctypes.c_int(nppe),
      ctypes.c_int(verbose),
-     ctypes.byref(nsigmas), 
-     ctypes.byref(sigmas), 
+     ctypes.byref(nsigmas),
+     ctypes.byref(sigmas),
      ctypes.byref(nrect),
-     ctypes.byref(xrect), 
+     ctypes.byref(xrect),
      ctypes.byref(yrect) )
 
 
@@ -79,10 +79,9 @@ _gn = _libgridgen.gridgen_generategrid2(
 # x.shape = (ny, nx)
 
 
-print 'run gety'
+print('run gety')
 y = _libgridgen.gridnodes_gety(_gn)
 
-print 'reshape result.'
+print('reshape result.')
 y = np.asarray([y[0][i] for i in range(ny*nx)])
 y.shape = (ny, nx)
-
