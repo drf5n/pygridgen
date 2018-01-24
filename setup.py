@@ -29,7 +29,7 @@ if __name__ == '__main__':
           long_description = "\n".join(doclines[2:]),
           author = "Robert Hetland",
           author_email = "hetland@tamu.edu",
-          url = "http://pygridgen.googlecode.com/",
+          url = "https://github.com/hetland/pygridgen",
           packages = ['pygridgen'],
           license = 'BSD',
           platforms = ["any"],
