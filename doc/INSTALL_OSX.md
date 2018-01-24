@@ -88,3 +88,34 @@ $ cd ~/sources/pygridgen
 $ source activate gridgen
 $ python setup.py install
 ```
+
+# Pure conda-forge install for MacOS 
+ (Tested on MacOS Sierra 10.12.6  2018-01-24)
+
+Assuming you already have Anaconda installed, the script below will setup a Python 3 environment named 'pygridgen' and run the example on the front page.
+
+```
+conda create pygridgen python=3.6 pygridgen --channel=conda-forge
+source activate pygridgen
+
+conda install ipython
+
+# test it out:
+
+ipython
+#
+import matplotlib.pyplot as plt
+import pygridgen
+x = [0, 1, 2, 1, 0]
+y = [0, 0, 1, 2, 2]
+beta = [1, 1, 0, 1, 1]
+
+grid = pygridgen.grid.Gridgen(x, y, beta, shape=(10, 5))
+
+fig, ax = plt.subplots()
+ax.plot(x, y, 'k-')
+ax.plot(grid.x, grid.y, 'b.')
+plt.show()
+ ```
+
+This install uses the repository at https://anaconda.org/conda-forge/pygridgen and https://github.com/conda-forge/pygridgen-feedstock
